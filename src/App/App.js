@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Reservation from '../Components/Reservation'
-import getReservations from '../apiCalls';
+import {getReservations, postReservation} from '../apiCalls';
+import Form from '../Components/Form'
 
 class App extends Component {
   constructor() {
@@ -15,6 +16,14 @@ class App extends Component {
     getReservations()
       .then(data => this.setState({reservations: data}))
       .catch(error => console.log(error.message))
+  }
+
+  addNewReservation(reservation) {
+    const onSuccess = () => {
+      alert('You have booked a reservation')
+    }
+    postReservation(reservation, onSuccess)
+    this.setState({reservations: [...this.state.reservations]})
   }
 
   showReservations = () => {
@@ -36,7 +45,7 @@ class App extends Component {
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
-
+          <Form addNewReservation={this.addNewReservation}/>
         </div>
         <div className='resy-container'>
           {this.showReservations()}
