@@ -22,8 +22,9 @@ class App extends Component {
     const onSuccess = () => {
       alert('You have booked a reservation')
     }
+    console.log('appnew', newReservation)
     postReservation(newReservation, onSuccess)
-    console.log(this.state)
+    console.log('app', this.state)
     this.setState({reservations: [newReservation, ...this.state.reservations]})
   }
 
