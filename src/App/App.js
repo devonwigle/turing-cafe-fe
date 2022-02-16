@@ -18,18 +18,20 @@ class App extends Component {
       .catch(error => console.log(error.message))
   }
 
-  addNewReservation(reservation) {
+  addNewReservation(newReservation) {
     const onSuccess = () => {
       alert('You have booked a reservation')
     }
-    postReservation(reservation, onSuccess)
-    this.setState({reservations: [...this.state.reservations]})
+    postReservation(newReservation, onSuccess)
+    console.log(this.state)
+    this.setState({reservations: [newReservation, ...this.state.reservations]})
   }
 
   showReservations = () => {
     return this.state.reservations.map(reservation => {
       return (
         <Reservation 
+          key={reservation.id}
           id={reservation.id}
           name={reservation.name}
           date={reservation.date}

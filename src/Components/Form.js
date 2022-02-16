@@ -3,13 +3,14 @@ import React, {Component} from 'react'
 class Form extends Component {
   constructor() {
   super()
-    this.state = {
-      name: '',
-      date: '',
-      time: '',
-      number: ''
-    }
+  this.state = {
+    id: Date.now(),
+    name: '',
+    date: '',
+    time: '',
+    number: 0
   }
+}
 
   clearInputs = () => {
     this.setState({ name: '', date: '', time: '', number: ''})
@@ -22,17 +23,19 @@ class Form extends Component {
   handleClick = (event) => {
     event.preventDefault()
     const newReservation = {...this.state}
+    console.log('new', newReservation)
+    console.log('state', this.state)
     this.props.addNewReservation(newReservation)
     this.clearInputs();
   }
 
   render() {
     return (
-      <form>
-        <input type="text" placeholder="Name" name='name' onChange={this.handleChange}/>
-        <input type="text" placeholder="mm/dd" name='date' onChange={this.handleChange}/>
-        <input type="text" placeholder="hh:mm" name='time' onChange={this.handleChange}/>
-        <input type="text" placeholder="1" name='number' onChange={this.handleChange}/>Number of people in Party
+      <form >
+        <input type="text" placeholder="Name" name='name' value={this.state.name} onChange={this.handleChange}/>
+        <input type="text" placeholder="mm/dd" name='date' value={this.state.date} onChange={this.handleChange}/>
+        <input type="text" placeholder="hh:mm" name='time' value={this.state.time} onChange={this.handleChange}/>
+        <input type="number" placeholder="0" name='number' value={this.state.number} onChange={this.handleChange}/>Number of people in Party
         <button onClick={event => this.handleClick(event)}>SUBMIT</button>
       </form>
     )

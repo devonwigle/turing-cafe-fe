@@ -8,13 +8,13 @@ export const getReservations = () => {
     })
 }
 
-export const postReservation = (reservation, onSuccess) => {
+export const postReservation = (newReservation, onSuccess) => {
   return fetch('http://localhost:3001/api/v1/reservations', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(reservation),
+    body: JSON.stringify(newReservation),
     })
     .then(response => {
       if (!response.ok) {
