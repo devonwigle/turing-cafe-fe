@@ -33,7 +33,7 @@ class Form extends Component {
         <input type="text" placeholder="mm/dd" name='date' onChange={this.handleChange}/>
         <input type="text" placeholder="hh:mm" name='time' onChange={this.handleChange}/>
         <input type="text" placeholder="1" name='number' onChange={this.handleChange}/>Number of people in Party
-        <button onClick={event => this.handleClick()}>SUBMIT</button>
+        <button onClick={event => this.handleClick(event)}>SUBMIT</button>
       </form>
     )
   }
