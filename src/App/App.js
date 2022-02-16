@@ -17,6 +17,20 @@ class App extends Component {
       .catch(error => console.log(error.message))
   }
 
+  showReservations = () => {
+    return this.state.reservations.map(reservation => {
+      return (
+        <Reservation 
+          id={reservation.id}
+          name={reservation.name}
+          date={reservation.date}
+          time={reservation.time}
+          number={reservation.number}
+        />
+      )
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -25,8 +39,7 @@ class App extends Component {
 
         </div>
         <div className='resy-container'>
-          <Reservation />
-          <Reservation />
+          {this.showReservations()}
         </div>
       </div>
     )
